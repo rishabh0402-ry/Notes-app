@@ -323,7 +323,7 @@ This project is licensed under the ISC License - see the LICENSE file for detail
 
 ## 👤 Author
 
-Created as a full-stack MERN demonstration project.
+Rishabh Yelne
 
 ---
 
