@@ -1,0 +1,225 @@
+/* =========================
+   GLOBAL PAGE LAYOUT
+========================= */
+.notes-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f6fb;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.notes-sidebar {
+  width: 70px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.06);
+}
+
+.sidebar-logo {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.add-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  margin-bottom: auto;
+  transition: transform 0.2s ease;
+}
+
+.add-button:hover {
+  transform: scale(1.1);
+}
+
+.logout-btn {
+  margin-top: auto;
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.notes-main-content {
+  flex: 1;
+  padding: 28px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.notes-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.notes-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.search-input {
+  padding: 10px 14px;
+  width: 260px;
+  border-radius: 20px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  font-size: 14px;
+}
+
+/* =========================
+   NOTES GRID
+========================= */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* =========================
+   NOTE CARD
+========================= */
+.note-card {
+  border-radius: 14px;
+  padding: 16px;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.note-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.note-card-description {
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.4;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+/* =========================
+   CARD FOOTER
+========================= */
+.note-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.note-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.note-action-btn {
+  background: rgba(0, 0, 0, 0.12);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* =========================
+   EMPTY / LOADING TEXT
+========================= */
+.empty-text {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* =========================
+   MODAL OVERLAY
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* =========================
+   MODAL CONTENT
+========================= */
+.modal-content {
+  background: #ffffff;
+  width: 420px;
+  max-width: 90%;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.modal-content h2 {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-actions button:first-child {
+  background: #22c55e;
+  color: white;
+}
+
+.modal-actions button:last-child {
+  background: #e5e7eb;
+}
