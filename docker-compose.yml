@@ -11,13 +11,13 @@ services:
     restart: always
 
   frontend:
-    build:
-      context: ./notes-frontend
-      args:
-        VITE_API_URL: http://http://34.201.148.125:5000
-    container_name: notes-frontend
-    ports:
-      - "3000:80"
-    depends_on:
-      - backend
-    restart: always
+  build:
+    context: ./notes-frontend
+    args:
+      VITE_API_URL: http://34.201.148.125:5000
+  container_name: notes-frontend
+  ports:
+    - "3000:80"
+  depends_on:
+    - backend
+
