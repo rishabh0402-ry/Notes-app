@@ -4,8 +4,10 @@ services:
     container_name: notes-backend
     ports:
       - "5000:5000"
-    env_file:
-      - ./notes-backend/.env
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - PORT=5000
     restart: always
 
   frontend:
