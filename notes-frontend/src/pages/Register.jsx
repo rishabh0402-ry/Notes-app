@@ -32,37 +32,37 @@ function Register() {
       setError("");
       setLoading(true);
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await res.json();
 
       if (!res.ok) {
         setError(data.message || "Registration failed");
-        setLoading(false);
         return;
       }
 
-      setError("");
-      navigate("/", { state: { message: "Registration successful! Please login." } });
-    } catch (error) {
+      // Success → redirect to login
+      navigate("/", {
+        state: { message: "Registration successful! Please login." },
+      });
+    } catch (err) {
       setError("Server error. Please try again later.");
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleGoogleSignup = () => {
-    setError("Google Sign-Up will be added soon");
   };
 
   const handleKeyPress = (e) => {
@@ -75,7 +75,20 @@ function Register() {
     <div className="container">
       <h2>✨ Create Account</h2>
 
-      {error && <div style={{ color: "#ef4444", fontSize: "14px", marginBottom: "15px", padding: "10px", backgroundColor: "#fee2e2", borderRadius: "6px" }}>{error}</div>}
+      {error && (
+        <div
+          style={{
+            color: "#ef4444",
+            fontSize: "14px",
+            marginBottom: "15px",
+            padding: "10px",
+            backgroundColor: "#fee2e2",
+            borderRadius: "6px",
+          }}
+        >
+          {error}
+        </div>
+      )}
 
       <input
         type="text"
@@ -120,7 +133,9 @@ function Register() {
       <div className="divider">OR</div>
 
       <button
-        onClick={handleGoogleSignup}
+        onClick={() =>
+          setError("Google Sign-Up will be added soon")
+        }
         style={{ backgroundColor: "#db4437" }}
       >
         Sign up with Google

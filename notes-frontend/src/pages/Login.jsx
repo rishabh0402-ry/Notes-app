@@ -17,33 +17,32 @@ function Login() {
     try {
       setError("");
       setLoading(true);
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await res.json();
 
       if (!res.ok) {
         setError(data.message || "Login failed");
-        setLoading(false);
         return;
       }
 
       localStorage.setItem("token", data.token);
       navigate("/notes");
-    } catch (error) {
+    } catch (err) {
       setError("Server error. Please try again later.");
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleGoogleLogin = () => {
-    setError("Google Login will be added soon");
   };
 
   const handleKeyPress = (e) => {
@@ -55,8 +54,21 @@ function Login() {
   return (
     <div className="container">
       <h2>📝 Notes App</h2>
-      
-      {error && <div style={{ color: "#ef4444", fontSize: "14px", marginBottom: "15px", padding: "10px", backgroundColor: "#fee2e2", borderRadius: "6px" }}>{error}</div>}
+
+      {error && (
+        <div
+          style={{
+            color: "#ef4444",
+            fontSize: "14px",
+            marginBottom: "15px",
+            padding: "10px",
+            backgroundColor: "#fee2e2",
+            borderRadius: "6px",
+          }}
+        >
+          {error}
+        </div>
+      )}
 
       <input
         type="email"
@@ -82,11 +94,8 @@ function Login() {
 
       <div className="divider">OR</div>
 
-      <button
-        onClick={handleGoogleLogin}
-        style={{ backgroundColor: "#4285f4" }}
-      >
-        Sign in with Google
+      <button style={{ backgroundColor: "#4285f4" }} disabled>
+        Sign in with Google (Coming Soon)
       </button>
 
       <p>
