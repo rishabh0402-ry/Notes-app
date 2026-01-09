@@ -1,15 +1,19 @@
 pipeline {
     agent any
 
-    stages {
+    environment {
+        MONGO_URI = credentials('MONGO_URI')
+        JWT_SECRET = credentials('JWT_SECRET')
+    }
 
-        stage('Clone Repo') {
+    stages {
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/rishabh0402-ry/Notes-app.git'
+                checkout scm
             }
         }
 
-        stage('Build Docker Images') {
+        stage('Build Images') {
             steps {
                 sh 'docker compose build'
             }
